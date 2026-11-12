@@ -218,3 +218,7 @@
   }
   .cta-photo.close{text-align:left}
   .cta-photo.close p{margin:0 0 1em;max-width:none;color:var(--soft);font-size:1.15rem}
+  .hero-call{background:var(--paper);color:var(--ink);font-size:1.3rem;padding:18px 30px;min-height:60px;margin:6px 0 14px}
+  .hero-call:hover{background:#fff;color:var(--ink)}
+  .hero-call .num{font-weight:500;opacity:.85;margin-left:4px}
+  @media (max-width:900px){.hero-full .eyebrow{display:none}}

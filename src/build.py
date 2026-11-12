@@ -11,6 +11,7 @@ OUT = ROOT / "public"
 PHONE = "417-496-3821"
 TEL = "tel:+14174963821"
 NAME = "Home Accessibility Solutions"
+SITE = "https://homeaccessco.com"
 
 NAV = [
     ("index.html", "Home"),
@@ -63,7 +64,7 @@ PAGES = {
 PHONE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>'
 
 SCHEMA = """<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Home Accessibility Solutions","slogan":"Helping you make your home work for you","founder":{"@type":"Person","name":"David Edge"},"telephone":"+1-417-496-3821","areaServed":"Springfield, Missouri","address":{"@type":"PostalAddress","addressLocality":"Springfield","addressRegion":"MO","addressCountry":"US"},"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Entry steps and access ramps"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Grab bars"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Doorway widening"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Accessible custom cabinets"}}]}
+{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Home Accessibility Solutions","slogan":"Helping you make your home work for you","founder":{"@type":"Person","name":"David Edge"},"telephone":"+1-417-496-3821","url":"https://homeaccessco.com/","image":"https://homeaccessco.com/og-image.jpg","areaServed":"Springfield, Missouri","address":{"@type":"PostalAddress","addressLocality":"Springfield","addressRegion":"MO","addressCountry":"US"},"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Entry steps and access ramps"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Grab bars"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Doorway widening"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Accessible custom cabinets"}}]}
 </script>"""
 
 
@@ -158,6 +159,7 @@ def build():
                 body = trim_head(body, sid)
         body = stripe(body)
         schema = SCHEMA if fname == "index.html" else ""
+        url = SITE + "/" if fname == "index.html" else f"{SITE}/{fname[:-5]}"
         html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,6 +171,25 @@ def build():
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter+Tight:wght@500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
+<link rel="canonical" href="{url}">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#3C3322">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{NAME}">
+<meta property="og:title" content="{page['title']}">
+<meta property="og:description" content="{page['desc']}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{SITE}/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Home Accessibility Solutions: Stay in the home you love. Call David 417-496-3821.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{page['title']}">
+<meta name="twitter:description" content="{page['desc']}">
+<meta name="twitter:image" content="{SITE}/og-image.jpg">
 {schema}
 </head>
 <body>

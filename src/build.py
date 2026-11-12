@@ -27,7 +27,7 @@ PAGES = {
     "index.html": dict(
         title=f"{NAME} · David Edge · Springfield, MO",
         desc="Mom or Dad coming home? Steps getting harder? David Edge builds steps, ramps, grab bars, wider doorways and accessible cabinets that fit your home. Springfield, Missouri. Call 417-496-3821.",
-        parts=["top", "paths", "services", "home-more", "how", "call"]),
+        parts=["top", "statement", "paths", "services", "home-more", "how", "call"]),
     "services.html": dict(
         title=f"Services · {NAME}",
         desc="Steps, ramps, grab bars, wider doorways, accessible cabinets and kitchen retrofits, built by David Edge in Springfield, MO.",
@@ -100,9 +100,12 @@ def header(current):
 
 
 FOOTER = f"""<footer>
-  <div class="wrap">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="wordmark">Home Accessibility<br>Solutions</p>
+      <p>David Edge, owner · Springfield, Missouri<br><a href="{TEL}">{PHONE}</a></p>
+    </div>
     <ul class="foot-links">{"".join(f'<li><a href="{h}">{l}</a></li>' for h, l in NAV)}</ul>
-    <p>{NAME} · David Edge, owner · Springfield, Missouri · <a href="{TEL}">{PHONE}</a></p>
   </div>
 </footer>"""
 
@@ -113,7 +116,7 @@ def load(name):
 
 def stripe(html):
     """Alternate backgrounds on plain sections, section by section."""
-    fixed = ("hero", "paths", "page-head", "partners", "close")
+    fixed = ("hero", "statement", "paths", "page-head", "partners", "close")
     chunks = re.split(r'(?=  <section)', html)
     out, alt = [], False
     for ch in chunks:
@@ -164,7 +167,7 @@ def build():
 <meta name="description" content="{page['desc']}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter+Tight:wght@500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
 {schema}
 </head>
